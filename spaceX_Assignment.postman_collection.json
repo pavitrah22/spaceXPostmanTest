@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "3fd334f9-4acb-470c-a58c-6b1a3df4a49b",
+		"name": "spaceX_Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "launches",
+			"item": [
+				{
+					"name": "Get all launches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TESTCASE1 response is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"flight1\", \"5eb87cd9ffd86e000604b32a\");\r",
+									"pm.collectionVariables.set(\"flight2\",\"5eb87cdaffd86e000604b32b\");\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://api.spacexdata.com/{{realm}}/launches",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spacexdata",
+								"com"
+							],
+							"path": [
+								"{{realm}}",
+								"launches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  launches by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TESTCASE1 response is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate scehma\", () =>{\r",
+									"  const scehma = {\r",
+									"      \r",
+									"  \r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"fairings\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"reused\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        },\r",
+									"        \"recovery_attempt\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        },\r",
+									"        \"recovered\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        },\r",
+									"        \"ships\": {\r",
+									"          \"type\": \"array\",\r",
+									"          \"items\": {}\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"reused\",\r",
+									"        \"recovery_attempt\",\r",
+									"        \"recovered\",\r",
+									"        \"ships\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"links\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"patch\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"small\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"large\": {\r",
+									"              \"type\": \"string\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"small\",\r",
+									"            \"large\"\r",
+									"          ]\r",
+									"        },\r",
+									"        \"reddit\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"campaign\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"launch\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"media\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"recovery\": {\r",
+									"              \"type\": \"null\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"campaign\",\r",
+									"            \"launch\",\r",
+									"            \"media\",\r",
+									"            \"recovery\"\r",
+									"          ]\r",
+									"        },\r",
+									"        \"flickr\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"small\": {\r",
+									"              \"type\": \"array\",\r",
+									"              \"items\": {}\r",
+									"            },\r",
+									"            \"original\": {\r",
+									"              \"type\": \"array\",\r",
+									"              \"items\": {}\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"small\",\r",
+									"            \"original\"\r",
+									"          ]\r",
+									"        },\r",
+									"        \"presskit\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"webcast\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"youtube_id\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"article\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"wikipedia\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"patch\",\r",
+									"        \"reddit\",\r",
+									"        \"flickr\",\r",
+									"        \"presskit\",\r",
+									"        \"webcast\",\r",
+									"        \"youtube_id\",\r",
+									"        \"article\",\r",
+									"        \"wikipedia\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"static_fire_date_utc\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"static_fire_date_unix\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"tbd\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"net\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"window\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"rocket\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"success\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"details\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"crew\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {}\r",
+									"    },\r",
+									"    \"ships\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {}\r",
+									"    },\r",
+									"    \"capsules\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {}\r",
+									"    },\r",
+									"    \"payloads\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      ]\r",
+									"    },\r",
+									"    \"launchpad\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"auto_update\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"launch_library_id\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"failures\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"time\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            },\r",
+									"            \"altitude\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"reason\": {\r",
+									"              \"type\": \"string\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"time\",\r",
+									"            \"altitude\",\r",
+									"            \"reason\"\r",
+									"          ]\r",
+									"        }\r",
+									"      ]\r",
+									"    },\r",
+									"    \"flight_number\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"date_utc\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"date_unix\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"date_local\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"date_precision\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"upcoming\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    },\r",
+									"    \"cores\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"core\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"flight\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            },\r",
+									"            \"gridfins\": {\r",
+									"              \"type\": \"boolean\"\r",
+									"            },\r",
+									"            \"legs\": {\r",
+									"              \"type\": \"boolean\"\r",
+									"            },\r",
+									"            \"reused\": {\r",
+									"              \"type\": \"boolean\"\r",
+									"            },\r",
+									"            \"landing_attempt\": {\r",
+									"              \"type\": \"boolean\"\r",
+									"            },\r",
+									"            \"landing_success\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"landing_type\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"landpad\": {\r",
+									"              \"type\": \"null\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"core\",\r",
+									"            \"flight\",\r",
+									"            \"gridfins\",\r",
+									"            \"legs\",\r",
+									"            \"reused\",\r",
+									"            \"landing_attempt\",\r",
+									"            \"landing_success\",\r",
+									"            \"landing_type\",\r",
+									"            \"landpad\"\r",
+									"          ]\r",
+									"        }\r",
+									"      ]\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"fairings\",\r",
+									"    \"links\",\r",
+									"    \"static_fire_date_utc\",\r",
+									"    \"static_fire_date_unix\",\r",
+									"    \"tbd\",\r",
+									"    \"net\",\r",
+									"    \"window\",\r",
+									"    \"rocket\",\r",
+									"    \"success\",\r",
+									"    \"details\",\r",
+									"    \"crew\",\r",
+									"    \"ships\",\r",
+									"    \"capsules\",\r",
+									"    \"payloads\",\r",
+									"    \"launchpad\",\r",
+									"    \"auto_update\",\r",
+									"    \"launch_library_id\",\r",
+									"    \"failures\",\r",
+									"    \"flight_number\",\r",
+									"    \"name\",\r",
+									"    \"date_utc\",\r",
+									"    \"date_unix\",\r",
+									"    \"date_local\",\r",
+									"    \"date_precision\",\r",
+									"    \"upcoming\",\r",
+									"    \"cores\",\r",
+									"    \"id\"\r",
+									"  ]\r",
+									"}\r",
+									"   \r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://api.spacexdata.com/v4/launches/{{flight1}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spacexdata",
+								"com"
+							],
+							"path": [
+								"v4",
+								"launches",
+								"{{flight1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get past launches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TESTCASE1 response is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"flight1\", \"5eb87cd9ffd86e000604b32a\");\r",
+									"pm.collectionVariables.set(\"flight2\",\"5eb87cdaffd86e000604b32b\");\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://api.spacexdata.com/v4/launches/past",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spacexdata",
+								"com"
+							],
+							"path": [
+								"v4",
+								"launches",
+								"past"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get upcoming launches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TESTCASE1 response is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://api.spacexdata.com/v4/launches/upcoming",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spacexdata",
+								"com"
+							],
+							"path": [
+								"v4",
+								"launches",
+								"upcoming"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get latest launches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TESTCASE1 response is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://api.spacexdata.com/v4/launches/latest",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spacexdata",
+								"com"
+							],
+							"path": [
+								"v4",
+								"launches",
+								"latest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get next launches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TESTCASE1 response is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://api.spacexdata.com/v4/launches/next",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spacexdata",
+								"com"
+							],
+							"path": [
+								"v4",
+								"launches",
+								"next"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post lauches",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "payload",
+									"value": "{{launchData}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhos:3000/launches",
+							"protocol": "http",
+							"host": [
+								"localhos"
+							],
+							"port": "3000",
+							"path": [
+								"launches"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "flight1",
+			"value": ""
+		},
+		{
+			"key": "flight2",
+			"value": ""
+		}
+	]
+}
